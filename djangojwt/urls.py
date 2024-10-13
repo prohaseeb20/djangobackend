@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from myapp.views import RegisterView,LoginView,DashboardView, JobListCreateView,JobDetailView
+from myapp.views import ApplicantsForJobView, AppliedJobsView, ApplyForJobView, RegisterView,LoginView,DashboardView, JobListCreateView,JobDetailView, UserProfileDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -15,6 +15,10 @@ urlpatterns = [
     path('api/dashboard/', DashboardView.as_view(),name="dashboard"),
     path('api/jobs/', JobListCreateView.as_view() , name="job_list_create"),
     path('api/jobs/<int:pk>', JobDetailView.as_view() , name="job_detail"),
+    path('api/profile/', UserProfileDetailView.as_view(), name='user_profile'),
+    path('api/jobs/applied/', AppliedJobsView.as_view(), name='applied_jobs'),
+    path('api/jobs/<int:job_id>/applicants/', ApplicantsForJobView.as_view(), name='applicants_for_job'),
+    path('api/jobs/<int:job_id>/apply/', ApplyForJobView.as_view(), name='apply_for_job'),
     ]
     
 

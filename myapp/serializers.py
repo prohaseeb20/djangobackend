@@ -1,6 +1,6 @@
 from rest_framework import  serializers
 from django.contrib.auth.models import User
-from .models import Role,UserRole,Job
+from .models import Role, UserProfile,UserRole,Job
 
 class UserSerializer(serializers.ModelSerializer) :
     class Meta:
@@ -35,8 +35,12 @@ class LoginSerializer(serializers.Serializer):
 
 
 class JobSerializer(serializers.ModelSerializer):
-    author=UserSerializer(read_only=True)
     class Meta:
-        model= Job
-        fields = ('id','title','content','author','created_at','updated_at')
+        model = Job
+        fields = ['title', 'company', 'designation', 'content', 'cgpa_cutoff', 'branches', 'author', 'created_at', 'updated_at']
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['phone_no', 'age', 'roll_no', 'cgpa', 'branch']
 
